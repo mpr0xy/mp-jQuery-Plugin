@@ -1,0 +1,30 @@
+.mp-slider {
+    position: relative;
+    width: 400px;
+    height: 250px;
+    overflow: hidden;
+}
+.mp-slider-img {
+    width: 400px;
+    height: 250px;
+}
+div,ul,li,img {
+    padding: 0px;
+    margin: 0px;
+}
+.mp-slider-description {
+    position: absolute;
+    bottom: 0;
+    opacity: 0.4;
+    width: 400px;
+    font-size: 0px;
+}
+
+.mp-slider-item{
+    display: inline-block;
+    width: 80px;
+    text-align: center;
+    background-color: green;
+    font-size: 20px;
+    cursor: pointer;
+}
