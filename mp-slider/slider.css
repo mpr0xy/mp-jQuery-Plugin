@@ -8,7 +8,7 @@
     width: 400px;
     height: 250px;
 }
-div,ul,li,img {
+.mp-slider ul, li, img {
     padding: 0px;
     margin: 0px;
 }
@@ -20,11 +20,18 @@ div,ul,li,img {
     font-size: 0px;
 }
 
-.mp-slider-item{
+.mp-slider-item {
     display: inline-block;
     width: 80px;
     text-align: center;
-    background-color: green;
+    background-color: rgb(13, 227, 126);
     font-size: 20px;
     cursor: pointer;
+    overflow: hidden;
+    height: 24px;
+    box-shadow: 4px 4px 20px #000000;
+}
+
+.mp-slider-description .on {
+    background-color: #f4f4f4;
 }

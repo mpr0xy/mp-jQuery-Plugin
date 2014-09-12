@@ -1,26 +1,117 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>mp-slider</title>
   <script src="http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js"></script>
   <link rel="stylesheet" type="text/css" href="slider.css">
+  <style type="text/css">
+  .mp-slider {
+    position: relative;
+    width: 400px;
+    height: 250px;
+    overflow: hidden;
+  }
+  .mp-slider-img {
+      width: 400px;
+      height: 250px;
+  }
+  .mp-slider ul, li, img {
+      padding: 0px;
+      margin: 0px;
+  }
+  .mp-slider-description {
+      position: absolute;
+      bottom: 0;
+      opacity: 0.3;
+      width: 400px;
+      font-size: 0px;
+  }
+  .mp-slider-item {
+      display: inline-block;
+      width: 80px;
+      text-align: center;
+      background-color: rgb(13, 227, 126);
+      font-size: 20px;
+      cursor: pointer;
+      overflow: hidden;
+      height: 24px;
+      box-shadow: 4px 4px 20px #000000;
+  }
+  .mp-slider-description .on {
+      background-color: #f4f4f4;
+  }
+  </style>
   <script type="text/javascript">
   $(function(){
-    $(".mp-slider img").eq(0).fadeOut();
+    var $mpSlider = $(".mp-slider");
+    var $imgs = $(".mp-slider img");
+    var $ulElement = $("<ul class='mp-slider-description'/>");
+    var liElements = "";
+    var sliderTimer = null;
+    var index = 0;
+
+    // add mp-slider-item in mp-slider
+    $imgs.each(function(index){
+      liElements += '<li class="mp-slider-item">' + $(this).attr("alt") + '</li>';
+    });
+    
+    $ulElement.append(liElements);
+    $mpSlider.append($ulElement);
+
+
+    // mp-slider-item width
+    var $mpSliderItem = $(".mp-slider-item");
+    var sliderWidth = $mpSlider.width();
+    var mpSliderItemWidth = sliderWidth / $imgs.length;
+    $mpSliderItem.each(function(index, el) {
+      $(this).width(mpSliderItemWidth);
+    });
+
+    // bind mouseover event
+    $mpSliderItem.on("mouseover", function(event) {
+      /* Act on the event */
+      index = $mpSliderItem.index(this);
+      showImg(index);
+      index++;
+    });
+
+    // make index img show and others hide
+    function showImg(index){
+      $(".mp-slider-img").eq(index).stop(true, true)
+        .show()
+        .animate({"opacity": "1"}, 1000/2)
+        .siblings("img").css("opacity", "0.7").hide();
+      
+      $mpSliderItem.removeClass("on")
+        .eq(index).addClass("on")
+    }
+
+    // auto slider
+    $mpSlider.hover(function() {
+      /* Stuff to do when the mouse enters the element */
+      if(sliderTimer){
+        clearInterval(sliderTimer);
+      }
+    }, function() {
+      /* Stuff to do when the mouse leaves the element */
+      sliderTimer = setInterval(function(){
+        showImg(index);
+        index++;
+        if (index == $imgs.length){
+          index = 0;
+        }
+      }, 4000)
+    }).trigger('mouseleave');
+    // $(".mp-slider img").eq(0).fadeOut();
   })
   </script>
 </head>
 <div>
   <div class="mp-slider">
-        <img class="mp-slider-img mp-slider-img-active"  src="http://img2.ph.126.net/c93GGw61JkvXImycyIMazQ==/6619164452816378699.jpg"/>
-        <img class="mp-slider-img mp-slider-img-active"  src="http://img2.ph.126.net/mSxCwXuXSyzKncrpS9m4tw==/6619134766002428606.jpg"/>
-        <img class="mp-slider-img mp-slider-img-active"  src="http://img0.ph.126.net/ccW-1f3wDYzctOoQprx73A==/6619183144514050347.jpg"/>
-        <ul class="mp-slider-description">
-            <li class="mp-slider-item">1</li>
-            <li class="mp-slider-item">2</li>
-            <li class="mp-slider-item">3</li>
-            <li class="mp-slider-item">4</li>
-            <li class="mp-slider-item">5</li>
-        </ul>
-    </div>
+        <img class="mp-slider-img" alt="one day"  src="http://img2.ph.126.net/c93GGw61JkvXImycyIMazQ==/6619164452816378699.jpg"/>
+        <img class="mp-slider-img" alt="second day"  src="http://img2.ph.126.net/mSxCwXuXSyzKncrpS9m4tw==/6619134766002428606.jpg"/>
+        <img class="mp-slider-img" alt="ai ni"  src="http://img0.ph.126.net/ccW-1f3wDYzctOoQprx73A==/6619183144514050347.jpg"/>
+  </div>
 </div>
 </html>
