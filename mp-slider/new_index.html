@@ -68,7 +68,8 @@
         var $ulElement = $("<ul class='mp-slider-description'/>");
         var liElements = "";
         var sliderTimer = null;
-        var index = 0;
+        var index = 1;
+        var imgsLength = $imgs.length;
         
         $mpSlider.css(options.mpSliderCss);
         $imgs.css(options.mpSliderImgCss);
@@ -77,20 +78,22 @@
           liElements += '<li class="mp-slider-item">' + $(this).attr("alt") + '</li>';
         });
 
+        // mp-slider-item width
+        var sliderWidth = $mpSlider.width();
+        var mpSliderItemWidth = sliderWidth / imgsLength;
         var $liElements = $(liElements)
-        $liElements.css(mpSliderItemCss);
+
+        options.mpSliderItemCss.width = mpSliderItemWidth;
+        $liElements.css(options.mpSliderItemCss);
         $ulElement.append($liElements);
 
-        $ulElement.css(mpSliderDescriptionCss);
+        $ulElement.css(options.mpSliderDescriptionCss);
         $mpSlider.append($ulElement);
 
-        // mp-slider-item width
+        $("ul", this).css(options.mpSliderRestCss);
+        $("li", this).css(options.mpSliderRestCss);
+
         var $mpSliderItem = $(".mp-slider-item");
-        var sliderWidth = $mpSlider.width();
-        var mpSliderItemWidth = sliderWidth / $imgs.length;
-        $mpSliderItem.each(function(index, el) {
-          $(this).width(mpSliderItemWidth);
-        });
 
         // bind mouseover event
         $mpSliderItem.on("mouseover", function(event) {
@@ -107,8 +110,9 @@
             .animate({"opacity": "1"}, 1000/2)
             .siblings("img").css("opacity", "0.7").hide();
           
-          $mpSliderItem.css(mpSliderItemCss)
-            .eq(index).css($.extend(mpSliderItemCss, mpSliderDescriptionOnCss))
+          $mpSliderItem.removeAttr("style")
+            .css(options.mpSliderItemCss)
+            .eq(index).css(options.mpSliderDescriptionOnCss)
         }
 
         // auto slider
@@ -122,7 +126,7 @@
           sliderTimer = setInterval(function(){
             showImg(index);
             index++;
-            if (index == $imgs.length){
+            if (index == imgsLength){
               index = 0;
             }
           }, 4000)
