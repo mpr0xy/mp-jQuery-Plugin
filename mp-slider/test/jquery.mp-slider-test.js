@@ -125,7 +125,7 @@
           if (index == imgsLength){
             index = 0;
           }
-        }, 4000)
+        }, 4000);
       }).trigger('mouseleave');
 
     }

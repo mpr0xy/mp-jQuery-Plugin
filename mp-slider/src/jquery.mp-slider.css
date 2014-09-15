@@ -1,0 +1,105 @@
+.mp-slider ul, li, img {
+  padding: 0px;
+  margin: 0px;
+}
+
+.mp-slider {
+  position: relative;
+  width: 520px;
+  height: 280px;
+  overflow: hidden;
+}
+.mp-slider-imgs {
+  position: absolute;
+  width: 3060px;
+  left: -520px;
+  overflow: hidden; 
+}
+.mp-slider-img {
+  width: 520px;
+  height: 280px;
+  float: left;
+}
+
+.mp-slider-prev, .mp-slider-next {
+  position: relative;
+  display: block;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  color: #fff;
+  background-color: rgba(0,0,0,.3);
+  filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#4C000000', EndColorStr='#4C000000');
+}
+
+.mp-slider-prev:hover, .mp-slider-next:hover {
+  background-color: rgba(0,0,0,.8);
+  filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#99000000', EndColorStr='#99000000');
+  border-top: 1px solid #fff;
+}
+
+.mp-slider-prev-and-next {
+  position: absolute;
+  width: 520px;
+  top: 120px;
+}
+
+.slider-click {
+  position:absolute;
+  width:20px;
+  height:20px;
+  display: block; 
+  top:9px;
+  transform: rotate(45deg);
+  -ms-transform: rotate(45deg);   /* IE 9 */
+  -webkit-transform: rotate(45deg); /* Safari and Chrome */
+  -o-transform: rotate(45deg);    /* Opera */
+  -moz-transform: rotate(45deg);    /* Firefox */
+}
+
+.mp-slider-prev .slider-click{
+  border-left: 3px solid #fff;
+  border-bottom: 3px solid #fff;
+  left:13px;
+}
+
+.mp-slider-next .slider-click{
+  border-right: 3px solid #fff;
+  border-top: 3px solid #fff;
+  right:13px;
+}
+
+.mp-slider-prev {
+  position: absolute;
+  left: 5px;
+}
+
+.mp-slider-next {
+  position: absolute;
+  right: 5px;
+}
+
+.mp-slider-nav {
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+}
+
+.mp-slider-nav-item {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 1px;
+  background-color: #000 \9;
+  background-color: rgba(0,0,0,0);
+  filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#00000000', EndColorStr='#00000000');
+  border: 1px solid #fff;
+  border-radius: 10px;
+}
+
+.mp-slider-nav-li-hover {
+  width: 12px;
+  height: 12px;
+  margin: 0;
+  background-color: #fff;
+}
