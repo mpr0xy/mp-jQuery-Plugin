@@ -40,4 +40,4 @@ mpr0xy开发的jQuery插件
 </html>
 ```
 ###Demo
-[mp-slider](http://)
+[mp-slider](http://mpr0xy.github.io/mp-jQuery-Plugin/mp-slider/mp-slider.html)
